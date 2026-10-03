@@ -102,3 +102,183 @@ complex html
     (tag_name)
     (text)
     (tag_name)))
+
+===
+Void element without a closing slash
+===
+<p>line one<br>line two</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (element
+      (tag_name))
+    (text)
+    (tag_name)))
+
+===
+Void elements with attributes
+===
+<img src="logo.png" alt="Logo">
+<meta charset="utf-8">
+<link rel="stylesheet" href="site.css">
+<input type="checkbox" checked>
+<hr>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value)))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value)))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value)))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (attribute_name))
+  (element
+    (tag_name)))
+
+===
+Every void element
+===
+<area><base><br><col><embed><hr><img><input><link><meta><source><track><wbr>
+---
+
+(compilation_unit
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name)))
+
+===
+Void element with a closing slash
+===
+<br/>
+<br />
+<hr class="rule" />
+---
+
+(compilation_unit
+  (element
+    (tag_name))
+  (element
+    (tag_name))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))))
+
+===
+Void elements inside other elements
+===
+<table>
+  <colgroup>
+    <col>
+    <col span="2">
+  </colgroup>
+</table>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (element
+      (tag_name)
+      (element
+        (tag_name))
+      (element
+        (tag_name)
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value)))
+      (tag_name))
+    (tag_name)))
+
+===
+Tag names that start like a void element
+===
+<brand-x>a</brand-x>
+<linker>b</linker>
+<Link href="x">c</Link>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (text)
+    (tag_name)))
+
+===
+End tag for a void element
+===
+<input></input>
+<p>a<br></br>b</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name))
+  (erroneous_end_tag)
+  (element
+    (tag_name)
+    (text)
+    (element
+      (tag_name))
+    (erroneous_end_tag)
+    (text)
+    (tag_name)))

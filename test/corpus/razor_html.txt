@@ -174,3 +174,95 @@ Mixed text and Razor expression in HTML attribute
             (string_literal)))))
     (text)
     (tag_name)))
+
+======
+Void element with razor attributes
+======
+<input @bind="name">
+<input type="checkbox" @onclick="() => Toggle(1)" disabled>
+<img src="@Logo" alt="">
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (razor_html_attribute
+      (razor_attribute_name)
+      (razor_attribute_value
+        (identifier))))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (razor_html_attribute
+      (razor_attribute_name)
+      (razor_attribute_value
+        (lambda_expression
+          (parameter_list)
+          (invocation_expression
+            (identifier)
+            (argument_list
+              (argument
+                (integer_literal)))))))
+    (attribute_name))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (razor_implicit_expression
+        (identifier)))
+    (attribute_name)
+    (quoted_attribute_value)))
+
+======
+Void elements in a control block followed by a code block
+======
+@if (show)
+{
+    <input @bind="name">
+    <br>
+    <span>@name</span>
+}
+
+@code {
+    private string name = "";
+
+    private void Reset() => name = "";
+}
+---
+
+(compilation_unit
+  (razor_if
+    (razor_condition
+      (identifier))
+    (element
+      (tag_name)
+      (razor_html_attribute
+        (razor_attribute_name)
+        (razor_attribute_value
+          (identifier))))
+    (element
+      (tag_name))
+    (element
+      (tag_name)
+      (razor_implicit_expression
+        (identifier))
+      (tag_name)))
+  (razor_block
+    (field_declaration
+      (modifier)
+      (variable_declaration
+        (predefined_type)
+        (variable_declarator
+          (identifier)
+          (string_literal))))
+    (method_declaration
+      (modifier)
+      (predefined_type)
+      (identifier)
+      (parameter_list)
+      (arrow_expression_clause
+        (assignment_expression
+          (identifier)
+          (string_literal))))))

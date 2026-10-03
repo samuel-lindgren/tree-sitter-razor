@@ -120,6 +120,8 @@ module.exports = grammar(CSHARP, {
           $.razor_compound_using,
           $.razor_lock,
           $.element,
+          alias($._void_element, $.element),
+          $.erroneous_end_tag,
           $.html_comment,
         ),
       ),
@@ -465,8 +467,24 @@ module.exports = grammar(CSHARP, {
     _html_comment_text: (_) => repeat1(/.|\n|\r/),
 
     // HTML Base Definitions
+    // The void elements have no content and no end tag. This token has to stay
+    // above `_tag_name`: both match these names, and of two tokens that match
+    // the same text the one defined first wins. A longer name such as
+    // `colgroup` still lexes as `_tag_name`, because the longer match wins.
+    _void_tag_name: (_) =>
+      /area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr/,
     _tag_name: (_) => /[a-zA-Z0-9-:]+/,
     _end_tag: ($) => seq("</", alias($._tag_name, $.tag_name), ">"),
+    // An end tag for a void element, as in `<br></br>`, closes nothing.
+    erroneous_end_tag: (_) =>
+      token(
+        seq(
+          "</",
+          /area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr/,
+          /\s*/,
+          ">",
+        ),
+      ),
     _html_attribute_name: (_) => /[a-zA-Z0-9-:]+/,
     _boolean_html_attribute: (_) => /[a-zA-Z0-9-:]+/,
     _html_attribute_value: ($) =>
@@ -496,24 +514,25 @@ module.exports = grammar(CSHARP, {
     razor_html_attribute: ($) =>
       seq($.razor_attribute_name, optional(seq("=", $.razor_attribute_value))),
 
+    _html_attributes: ($) =>
+      repeat1(
+        prec.left(
+          seq(
+            choice(
+              $._html_attribute,
+              alias($._boolean_html_attribute, $.attribute_name),
+              $.razor_html_attribute,
+            ),
+            optional(" "),
+          ),
+        ),
+      ),
+
     element: ($) =>
       seq(
         "<",
         alias($._tag_name, $.tag_name),
-        optional(
-          repeat(
-            prec.left(
-              seq(
-                choice(
-                  $._html_attribute,
-                  alias($._boolean_html_attribute, $.attribute_name),
-                  $.razor_html_attribute,
-                ),
-                optional(" "),
-              ),
-            ),
-          ),
-        ),
+        optional($._html_attributes),
         choice(
           "/>",
           seq(
@@ -522,6 +541,14 @@ module.exports = grammar(CSHARP, {
             $._end_tag,
           ),
         ),
+      ),
+
+    _void_element: ($) =>
+      seq(
+        "<",
+        alias($._void_tag_name, $.tag_name),
+        optional($._html_attributes),
+        choice(">", "/>"),
       ),
   },
 });

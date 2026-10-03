@@ -65,7 +65,10 @@
 
 (taghelper_wildcard) @character.special
 
-(tag_name) @tag
+[
+  (tag_name)
+  (erroneous_end_tag)
+] @tag
 
 (attribute_name) @tag.attribute
 

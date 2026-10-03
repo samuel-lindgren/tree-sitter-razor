@@ -1536,6 +1536,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -1977,6 +1981,10 @@
       "types": [
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -2659,6 +2667,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -5843,6 +5855,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -5938,6 +5954,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -6028,6 +6048,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -6141,6 +6165,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -6232,6 +6260,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -6316,6 +6348,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -6440,6 +6476,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -6524,6 +6564,10 @@
           },
           {
             "type": "element",
+            "named": true
+          },
+          {
+            "type": "erroneous_end_tag",
             "named": true
           },
           {
@@ -6646,6 +6690,10 @@
           },
           {
             "type": "element",
+            "named": true
+          },
+          {
+            "type": "erroneous_end_tag",
             "named": true
           },
           {
@@ -6791,6 +6839,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -7004,6 +7056,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -7237,6 +7293,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -7351,6 +7411,10 @@
           "named": true
         },
         {
+          "type": "erroneous_end_tag",
+          "named": true
+        },
+        {
           "type": "explicit_line_transition",
           "named": true
         },
@@ -7439,6 +7503,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -7545,6 +7613,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -7694,6 +7766,10 @@
         },
         {
           "type": "element",
+          "named": true
+        },
+        {
+          "type": "erroneous_end_tag",
           "named": true
         },
         {
@@ -9493,6 +9569,10 @@
   {
     "type": "equals",
     "named": false
+  },
+  {
+    "type": "erroneous_end_tag",
+    "named": true
   },
   {
     "type": "escape_sequence",

@@ -22,3 +22,17 @@
 //            ^ variable
 //                                   ^^^^^^^^ function
 //                                                ^ tag.delimiter
+
+<input type="text" disabled>
+// <- tag.delimiter
+//^^^^ tag
+//     ^^^^ tag.attribute
+//          ^^^^^^ string
+//                 ^^^^^^^^ tag.attribute
+//                         ^ tag.delimiter
+
+<br></br>
+// <- tag.delimiter
+//^ tag
+// ^ tag.delimiter
+//  ^^^^^ tag

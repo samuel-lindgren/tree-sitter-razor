@@ -241,8 +241,11 @@ module.exports = grammar(CSHARP, {
         ),
       ),
 
+    // 10 is the precedence of `<` in tree-sitter-c-sharp (PREC.REL). With the
+    // same precedence and left associativity the expression ends before a `<`
+    // that can start an element, instead of taking it as less-than.
     razor_implicit_expression: ($) =>
-      seq(alias($._razor_marker, "at_implicit"), prec.left($.expression)),
+      seq(alias($._razor_marker, "at_implicit"), prec.left(10, $.expression)),
 
     razor_lock: ($) =>
       seq(
@@ -548,12 +551,17 @@ module.exports = grammar(CSHARP, {
         ),
       ),
 
+    // `@item.Name<br>` also reads as a generic name. The dynamic precedence
+    // makes the void element win.
     _void_element: ($) =>
-      seq(
-        "<",
-        alias($._void_tag_name, $.tag_name),
-        optional($._html_attributes),
-        choice(">", "/>"),
+      prec.dynamic(
+        1,
+        seq(
+          "<",
+          alias($._void_tag_name, $.tag_name),
+          optional($._html_attributes),
+          choice(">", "/>"),
+        ),
       ),
   },
 });

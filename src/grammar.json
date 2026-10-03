@@ -12926,7 +12926,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 0,
+          "value": 10,
           "content": {
             "type": "SYMBOL",
             "name": "expression"
@@ -14353,47 +14353,51 @@
       ]
     },
     "_void_element": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_void_tag_name"
+      "type": "PREC_DYNAMIC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "<"
           },
-          "named": true,
-          "value": "tag_name"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
+          {
+            "type": "ALIAS",
+            "content": {
               "type": "SYMBOL",
-              "name": "_html_attributes"
+              "name": "_void_tag_name"
             },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ">"
-            },
-            {
-              "type": "STRING",
-              "value": "/>"
-            }
-          ]
-        }
-      ]
+            "named": true,
+            "value": "tag_name"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_html_attributes"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ">"
+              },
+              {
+                "type": "STRING",
+                "value": "/>"
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "extras": [

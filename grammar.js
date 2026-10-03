@@ -132,7 +132,10 @@ module.exports = grammar(CSHARP, {
       seq(alias(/@{2}/, "at_at_escape"), alias($._html_text, $.element)),
 
     razor_page_directive: ($) =>
-      seq(alias(seq($._razor_marker, "page"), "at_page"), $.string_literal),
+      seq(
+        alias(seq($._razor_marker, "page"), "at_page"),
+        optional($.string_literal),
+      ),
     razor_using_directive: ($) =>
       seq(
         alias(seq($._razor_marker, "using"), "at_using"),

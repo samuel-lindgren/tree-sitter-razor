@@ -407,3 +407,44 @@ tagHelperPrefix
       (string_literal_content)))
   (razor_taghelperprefix_directive
     (identifier)))
+
+===
+Page without a route
+===
+@page
+@model IndexModel
+---
+
+(compilation_unit
+  (razor_page_directive)
+  (razor_model_directive
+    (identifier)))
+
+===
+Page without a route before a code block and markup
+===
+@page
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Welcome</h1>
+---
+
+(compilation_unit
+  (razor_page_directive)
+  (razor_block
+    (expression_statement
+      (assignment_expression
+        (element_access_expression
+          (identifier)
+          (bracketed_argument_list
+            (argument
+              (string_literal
+                (string_literal_content)))))
+        (string_literal
+          (string_literal_content)))))
+  (element
+    (tag_name)
+    (text)
+    (tag_name)))

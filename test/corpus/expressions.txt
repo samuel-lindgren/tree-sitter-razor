@@ -41,11 +41,14 @@ Explicit Razor Expression with code
               (argument
                 (integer_literal))))))))
   (element
+    (tag_name)
+    (text)
     (razor_implicit_expression
       (parenthesized_expression
         (member_access_expression
           (identifier)
-          (identifier))))))
+          (identifier))))
+    (tag_name)))
 
 ================
 Razor Implicit Expression
@@ -69,8 +72,10 @@ Razor Implicit Expression in Html Tag
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_implicit_expression
-      (identifier))))
+      (identifier))
+    (tag_name)))
 
 =====
 Implict Razor Expression Mid Line
@@ -92,8 +97,11 @@ Implict Razor Expression Mid Line
           (string_literal
             (string_literal_content))))))
   (element
+    (tag_name)
+    (text)
     (razor_implicit_expression
-      (identifier))))
+      (identifier))
+    (tag_name)))
 
 =======
 Implict Razor Expressions
@@ -104,11 +112,14 @@ Implict Razor Expressions
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_implicit_expression
       (member_access_expression
         (identifier)
-        (identifier))))
+        (identifier)))
+    (tag_name))
   (element
+    (tag_name)
     (razor_implicit_expression
       (invocation_expression
         (member_access_expression
@@ -116,7 +127,8 @@ Implict Razor Expressions
           (identifier))
         (argument_list
           (argument
-            (integer_literal)))))))
+            (integer_literal)))))
+    (tag_name)))
 
 =====
 Implict Expression with spaces - after space is text
@@ -127,10 +139,14 @@ Implict Expression with spaces - after space is text
 
 (compilation_unit
   (element
+    (tag_name)
+    (text)
     (razor_implicit_expression
       (member_access_expression
         (identifier)
-        (identifier)))))
+        (identifier)))
+    (text)
+    (tag_name)))
 
 =======
 Implict Razor Expressions With Generics - Should render Generic as tag
@@ -142,13 +158,15 @@ Implict Razor Expressions With Generics - Should render Generic as tag
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_implicit_expression
       (invocation_expression
         (generic_name
           (identifier)
           (type_argument_list
             (predefined_type)))
-        (argument_list)))))
+        (argument_list)))
+    (tag_name)))
 
 =======
 Explicit Razor Expressions With Generics
@@ -160,6 +178,7 @@ Explicit Razor Expressions With Generics
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_explicit_expression
       (parenthesized_expression
         (invocation_expression
@@ -167,7 +186,8 @@ Explicit Razor Expressions With Generics
             (identifier)
             (type_argument_list
               (predefined_type)))
-          (argument_list))))))
+          (argument_list))))
+    (tag_name)))
 
 ======
 Await Implicit Razor Expression
@@ -177,6 +197,7 @@ Await Implicit Razor Expression
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_implicit_expression
       (await_expression
         (invocation_expression
@@ -187,7 +208,8 @@ Await Implicit Razor Expression
                 (string_literal_content)))
             (argument
               (string_literal
-                (string_literal_content)))))))))
+                (string_literal_content)))))))
+    (tag_name)))
 
 ======
 Implicit Expression in attribute value
@@ -198,8 +220,13 @@ Implicit Expression in attribute value
 
 (compilation_unit
   (element
-    (razor_implicit_expression
-      (boolean_literal))))
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (razor_implicit_expression
+        (boolean_literal)))
+    (text)
+    (tag_name)))
 
 =====
 Explicit Expression in attribute value
@@ -209,10 +236,15 @@ Explicit Expression in attribute value
 
 (compilation_unit
   (element
-    (razor_explicit_expression
-      (parenthesized_expression
-        (string_literal
-          (string_literal_content))))))
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (razor_explicit_expression
+        (parenthesized_expression
+          (string_literal
+            (string_literal_content)))))
+    (text)
+    (tag_name)))
 
 ======
 Implicit Expression With A Name that starts with a keyword
@@ -222,5 +254,7 @@ Implicit Expression With A Name that starts with a keyword
 
 (compilation_unit
   (element
+    (tag_name)
     (razor_implicit_expression
-      (identifier))))
+      (identifier))
+    (tag_name)))

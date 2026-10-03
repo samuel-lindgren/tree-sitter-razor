@@ -29,12 +29,18 @@ finally
         (identifier)
         (identifier))
       (element
+        (tag_name)
+        (text)
         (razor_implicit_expression
           (member_access_expression
             (identifier)
-            (identifier)))))
+            (identifier)))
+        (tag_name)))
     (razor_finally
-      (element))))
+      (element
+        (tag_name)
+        (text)
+        (tag_name)))))
 
 ===
 @try, catch
@@ -60,7 +66,10 @@ catch (Exception)
     (razor_catch
       (catch_declaration
         (identifier))
-      (element))))
+      (element
+        (tag_name)
+        (text)
+        (tag_name)))))
 
 ===
 @try, catch, finally nested in element
@@ -84,11 +93,18 @@ catch (Exception)
 ---
 
 (compilation_unit
- (element
-  (razor_try
-   (element)
-   (razor_catch
-    (catch_declaration (identifier) (identifier))
-    (element))
-   (razor_finally
-    (element)))))
+  (element
+    (tag_name)
+    (razor_try
+      (element
+        (tag_name))
+      (razor_catch
+        (catch_declaration
+          (identifier)
+          (identifier))
+        (element
+          (tag_name)))
+      (razor_finally
+        (element
+          (tag_name))))
+    (tag_name)))

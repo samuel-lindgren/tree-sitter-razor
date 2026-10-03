@@ -14006,8 +14006,13 @@
           "value": "</"
         },
         {
-          "type": "SYMBOL",
-          "name": "_tag_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_tag_name"
+          },
+          "named": true,
+          "value": "tag_name"
         },
         {
           "type": "STRING",
@@ -14044,8 +14049,13 @@
                 "name": "razor_implicit_expression"
               },
               {
-                "type": "PATTERN",
-                "value": "[^\"@]+"
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\"@]+"
+                },
+                "named": true,
+                "value": "attribute_value"
               }
             ]
           }
@@ -14093,16 +14103,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_html_attribute_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_html_attribute_name"
+          },
+          "named": true,
+          "value": "attribute_name"
         },
         {
           "type": "STRING",
           "value": "="
         },
         {
-          "type": "SYMBOL",
-          "name": "_html_attribute_value"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_html_attribute_value"
+          },
+          "named": true,
+          "value": "quoted_attribute_value"
         }
       ]
     },
@@ -14144,8 +14164,13 @@
           "value": "<"
         },
         {
-          "type": "SYMBOL",
-          "name": "_tag_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_tag_name"
+          },
+          "named": true,
+          "value": "tag_name"
         },
         {
           "type": "CHOICE",
@@ -14166,8 +14191,13 @@
                           "name": "_html_attribute"
                         },
                         {
-                          "type": "SYMBOL",
-                          "name": "_boolean_html_attribute"
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "_boolean_html_attribute"
+                          },
+                          "named": true,
+                          "value": "attribute_name"
                         },
                         {
                           "type": "SYMBOL",
@@ -14220,8 +14250,13 @@
                         "name": "_node"
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "_html_text"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_html_text"
+                        },
+                        "named": true,
+                        "value": "text"
                       }
                     ]
                   }

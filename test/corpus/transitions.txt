@@ -35,10 +35,13 @@ Explicit delimited transition
               (argument
                 (identifier)))))))
     (element
+      (tag_name)
+      (text)
       (razor_implicit_expression
         (member_access_expression
           (identifier)
-          (identifier))))))
+          (identifier)))
+      (tag_name))))
 
 =======
 Explicit Line Transition

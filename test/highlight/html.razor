@@ -1,0 +1,24 @@
+<p id="intro" hidden>Text</p>
+// <- tag.delimiter
+ // <- tag
+// ^^ tag.attribute
+//    ^^^^^^^ string
+//            ^^^^^^ tag.attribute
+//                  ^ tag.delimiter
+//                       ^^ tag.delimiter
+//                         ^ tag
+//                          ^ tag.delimiter
+
+<img src="logo.png" />
+// <- tag.delimiter
+//^^ tag
+//   ^^^ tag.attribute
+//       ^^^^^^^^^^ string
+//                  ^^ tag.delimiter
+
+<a class="nav @(active ? "on" : "")" @onclick="Go">x</a>
+// ^^^^^ tag.attribute
+//       ^^^^^ string
+//            ^ variable
+//                                   ^^^^^^^^ function
+//                                                ^ tag.delimiter

@@ -1308,6 +1308,11 @@
     }
   },
   {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "attribute_target_specifier",
     "named": true,
     "fields": {}
@@ -2649,6 +2654,10 @@
       "required": false,
       "types": [
         {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -2658,6 +2667,10 @@
         },
         {
           "type": "html_comment",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
           "named": true
         },
         {
@@ -2718,6 +2731,14 @@
         },
         {
           "type": "razor_while",
+          "named": true
+        },
+        {
+          "type": "tag_name",
+          "named": true
+        },
+        {
+          "type": "text",
           "named": true
         }
       ]
@@ -5645,6 +5666,29 @@
     }
   },
   {
+    "type": "quoted_attribute_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_value",
+          "named": true
+        },
+        {
+          "type": "razor_explicit_expression",
+          "named": true
+        },
+        {
+          "type": "razor_implicit_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "range_expression",
     "named": true,
     "fields": {},
@@ -8262,6 +8306,11 @@
     }
   },
   {
+    "type": "tag_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "throw_expression",
     "named": true,
     "fields": {},
@@ -9337,6 +9386,10 @@
     "named": false
   },
   {
+    "type": "attribute_value",
+    "named": true
+  },
+  {
     "type": "attributes",
     "named": false
   },
@@ -9771,6 +9824,10 @@
   },
   {
     "type": "taghelper_wildcard",
+    "named": true
+  },
+  {
+    "type": "text",
     "named": true
   },
   {

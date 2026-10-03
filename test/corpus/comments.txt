@@ -93,4 +93,7 @@ IMPORTANT
 
 (compilation_unit
   (element
-    (html_comment)))
+    (tag_name)
+    (html_comment)
+    (text)
+    (tag_name)))

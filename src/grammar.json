@@ -14139,6 +14139,10 @@
       "type": "PATTERN",
       "value": "[^<>&@.(\\s]([^<>&@]*[^<>&@\\s])?"
     },
+    "entity": {
+      "type": "PATTERN",
+      "value": "&(#([xX][0-9a-fA-F]{1,6}|[0-9]{1,5})|[A-Za-z]{1,30});?"
+    },
     "razor_attribute_value": {
       "type": "SEQ",
       "members": [
@@ -14330,6 +14334,10 @@
                         },
                         "named": true,
                         "value": "text"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "entity"
                       }
                     ]
                   }

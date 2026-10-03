@@ -290,3 +290,33 @@ Doctype in a layout with razor expressions
           (argument_list)))
       (tag_name))
     (tag_name)))
+
+======
+Entities around an implicit expression
+======
+<p>&copy; 2026 @name &nbsp;&amp; friends</p>
+
+@code {
+    private string name = "";
+}
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (entity)
+    (text)
+    (razor_implicit_expression
+      (identifier))
+    (entity)
+    (entity)
+    (text)
+    (tag_name))
+  (razor_block
+    (field_declaration
+      (modifier)
+      (variable_declaration
+        (predefined_type)
+        (variable_declarator
+          (identifier)
+          (string_literal))))))

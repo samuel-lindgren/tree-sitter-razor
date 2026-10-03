@@ -2682,6 +2682,10 @@
           "named": true
         },
         {
+          "type": "entity",
+          "named": true
+        },
+        {
           "type": "erroneous_end_tag",
           "named": true
         },
@@ -9641,6 +9645,10 @@
   {
     "type": "enable",
     "named": false
+  },
+  {
+    "type": "entity",
+    "named": true
   },
   {
     "type": "enum",

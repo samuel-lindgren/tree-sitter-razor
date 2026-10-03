@@ -753,3 +753,100 @@ Person? secondAuthor)
         (tag_name))
       (tag_name))
     (tag_name)))
+
+======
+Form with void elements, entities and a code block
+======
+@page "/void"
+
+<h1>Form</h1>
+<p>line one<br>line two</p>
+<input @bind="name">
+<img src="logo.png" alt="Logo">
+<hr>
+<p>&copy; 2026 @name &nbsp;&amp; friends</p>
+
+@if (name.Length > 3)
+{
+    <span class="ok">long</span>
+}
+
+@code {
+    private string name = "";
+
+    private void Reset() => name = "";
+}
+---
+
+(compilation_unit
+  (razor_page_directive
+    (string_literal
+      (string_literal_content)))
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (text)
+    (element
+      (tag_name))
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (razor_html_attribute
+      (razor_attribute_name)
+      (razor_attribute_value
+        (identifier))))
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value)))
+  (element
+    (tag_name))
+  (element
+    (tag_name)
+    (entity)
+    (text)
+    (razor_implicit_expression
+      (identifier))
+    (entity)
+    (entity)
+    (text)
+    (tag_name))
+  (razor_if
+    (razor_condition
+      (binary_expression
+        (member_access_expression
+          (identifier)
+          (identifier))
+        (integer_literal)))
+    (element
+      (tag_name)
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value))
+      (text)
+      (tag_name)))
+  (razor_block
+    (field_declaration
+      (modifier)
+      (variable_declaration
+        (predefined_type)
+        (variable_declarator
+          (identifier)
+          (string_literal))))
+    (method_declaration
+      (modifier)
+      (predefined_type)
+      (identifier)
+      (parameter_list)
+      (arrow_expression_clause
+        (assignment_expression
+          (identifier)
+          (string_literal))))))

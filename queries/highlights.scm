@@ -83,3 +83,5 @@
   ] @tag.delimiter)
 
 (doctype) @constant
+
+(entity) @character.special

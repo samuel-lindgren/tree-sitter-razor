@@ -329,3 +329,26 @@ Lowercase doctype
     (tag_name)
     (text)
     (tag_name)))
+
+===
+Entities in text
+===
+<p>&copy; 2026 &nbsp;&amp; friends</p>
+<p>&#169; and &#xA9;</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (entity)
+    (text)
+    (entity)
+    (entity)
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (entity)
+    (text)
+    (entity)
+    (tag_name)))

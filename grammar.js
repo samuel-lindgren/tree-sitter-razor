@@ -504,6 +504,7 @@ module.exports = grammar(CSHARP, {
         '"',
       ),
     _html_text: (_) => /[^<>&@.(\s]([^<>&@]*[^<>&@\s])?/,
+    entity: (_) => /&(#([xX][0-9a-fA-F]{1,6}|[0-9]{1,5})|[A-Za-z]{1,30});?/,
 
     razor_attribute_value: ($) =>
       seq('"', optional($.modifier), $.expression, '"'),
@@ -541,7 +542,7 @@ module.exports = grammar(CSHARP, {
           "/>",
           seq(
             ">",
-            repeat(choice($._node, alias($._html_text, $.text))),
+            repeat(choice($._node, alias($._html_text, $.text), $.entity)),
             $._end_tag,
           ),
         ),

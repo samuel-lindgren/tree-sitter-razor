@@ -104,7 +104,6 @@ module.exports = grammar(CSHARP, {
     _node: ($) =>
       prec.right(
         choice(
-          $.razor_comment,
           $.razor_escape,
           $.razor_if,
           $.razor_switch,
@@ -446,7 +445,8 @@ module.exports = grammar(CSHARP, {
         ),
       ),
 
-    razor_comment: ($) => seq("@*", optional($._razor_comment_text), "*@"),
+    // A single token, valid anywhere as an extra.
+    razor_comment: (_) => token(seq("@*", /([^*]|\*+[^*@])*/, /\*+/, "@")),
     _razor_comment_text: (_) => repeat1(/.|\n|\r/),
     razor_attribute_name: ($) =>
       seq(

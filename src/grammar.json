@@ -12122,10 +12122,6 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "razor_comment"
-          },
-          {
-            "type": "SYMBOL",
             "name": "razor_escape"
           },
           {
@@ -13868,29 +13864,28 @@
       }
     },
     "razor_comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "@*"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_razor_comment_text"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "*@"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "([^*]|\\*+[^*@])*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\*+"
+          },
+          {
+            "type": "STRING",
+            "value": "@"
+          }
+        ]
+      }
     },
     "_razor_comment_text": {
       "type": "REPEAT1",

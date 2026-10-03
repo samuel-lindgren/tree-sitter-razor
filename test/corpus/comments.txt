@@ -76,9 +76,7 @@ Commented Code Block
 ---
 
 (compilation_unit
-  (razor_comment
-    (comment)
-    (comment))
+  (razor_comment)
   (razor_block
     (comment)))
 
@@ -95,5 +93,139 @@ IMPORTANT
   (element
     (tag_name)
     (html_comment)
+    (text)
+    (tag_name)))
+
+===
+Comment after the directives
+===
+@page "/x"
+@using System.Linq
+@* comment *@
+<div></div>
+---
+
+(compilation_unit
+  (razor_page_directive
+    (string_literal
+      (string_literal_content)))
+  (razor_using_directive
+    (qualified_name
+      (identifier)
+      (identifier)))
+  (razor_comment)
+  (element
+    (tag_name)
+    (tag_name)))
+
+===
+Comment between directives
+===
+@* first *@
+@using System.Linq
+@* second *@
+@using System.Text
+<div></div>
+---
+
+(compilation_unit
+  (razor_comment)
+  (razor_using_directive
+    (qualified_name
+      (identifier)
+      (identifier)))
+  (razor_comment)
+  (razor_using_directive
+    (qualified_name
+      (identifier)
+      (identifier)))
+  (element
+    (tag_name)
+    (tag_name)))
+
+===
+Comment inside an element
+===
+<p>@* before *@ text @* after *@</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (razor_comment)
+    (text)
+    (razor_comment)
+    (tag_name)))
+
+===
+Comment at the end of the file
+===
+<div></div>
+@* comment *@
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (tag_name))
+  (razor_comment))
+
+===
+Comment in a control block
+===
+@if (show)
+{
+    @* comment *@
+    <p>text</p>
+    @* comment *@
+}
+---
+
+(compilation_unit
+  (razor_if
+    (razor_condition
+      (identifier))
+    (razor_comment)
+    (element
+      (tag_name)
+      (text)
+      (tag_name))
+    (razor_comment)))
+
+===
+Comment in a code block
+===
+@code {
+    @* comment *@
+    private int count = 0;
+    @* comment *@
+}
+---
+
+(compilation_unit
+  (razor_block
+    (razor_comment)
+    (field_declaration
+      (modifier)
+      (variable_declaration
+        (predefined_type)
+        (variable_declarator
+          (identifier)
+          (integer_literal))))
+    (razor_comment)))
+
+===
+Comment with stars and at signs
+===
+@* ** a * b @ c **@
+@**@
+<p>text</p>
+---
+
+(compilation_unit
+  (razor_comment)
+  (razor_comment)
+  (element
+    (tag_name)
     (text)
     (tag_name)))

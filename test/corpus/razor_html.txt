@@ -266,3 +266,27 @@ Void elements in a control block followed by a code block
         (assignment_expression
           (identifier)
           (string_literal))))))
+
+======
+Doctype in a layout with razor expressions
+======
+<!DOCTYPE html>
+<html>
+<body>
+    @RenderBody()
+</body>
+</html>
+---
+
+(compilation_unit
+  (doctype)
+  (element
+    (tag_name)
+    (element
+      (tag_name)
+      (razor_implicit_expression
+        (invocation_expression
+          (identifier)
+          (argument_list)))
+      (tag_name))
+    (tag_name)))

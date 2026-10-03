@@ -81,3 +81,5 @@
     "</"
     "/>"
   ] @tag.delimiter)
+
+(doctype) @constant

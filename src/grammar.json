@@ -12199,6 +12199,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "doctype"
+          },
+          {
+            "type": "SYMBOL",
             "name": "html_comment"
           }
         ]
@@ -14005,6 +14009,30 @@
       "content": {
         "type": "PATTERN",
         "value": ".|\\n|\\r"
+      }
+    },
+    "doctype": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "<!"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[Dd][Oo][Cc][Tt][Yy][Pp][Ee]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^>]*"
+          },
+          {
+            "type": "STRING",
+            "value": ">"
+          }
+        ]
       }
     },
     "_void_tag_name": {

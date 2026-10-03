@@ -122,6 +122,7 @@ module.exports = grammar(CSHARP, {
           $.element,
           alias($._void_element, $.element),
           $.erroneous_end_tag,
+          $.doctype,
           $.html_comment,
         ),
       ),
@@ -465,6 +466,9 @@ module.exports = grammar(CSHARP, {
 
     html_comment: ($) => seq("<!--", optional($._razor_comment_text), "-->"),
     _html_comment_text: (_) => repeat1(/.|\n|\r/),
+
+    doctype: (_) =>
+      token(seq("<!", /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]*/, ">")),
 
     // HTML Base Definitions
     // The void elements have no content and no end tag. This token has to stay

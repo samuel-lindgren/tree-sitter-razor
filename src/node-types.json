@@ -1532,6 +1532,10 @@
       "required": false,
       "types": [
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -1979,6 +1983,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "doctype",
+          "named": true
+        },
         {
           "type": "element",
           "named": true
@@ -2663,6 +2671,10 @@
       "types": [
         {
           "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -5851,6 +5863,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -5950,6 +5966,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -6044,6 +6064,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -6161,6 +6185,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -6256,6 +6284,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -6344,6 +6376,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -6472,6 +6508,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -6560,6 +6600,10 @@
         "types": [
           {
             "type": "comment",
+            "named": true
+          },
+          {
+            "type": "doctype",
             "named": true
           },
           {
@@ -6686,6 +6730,10 @@
         "types": [
           {
             "type": "comment",
+            "named": true
+          },
+          {
+            "type": "doctype",
             "named": true
           },
           {
@@ -6835,6 +6883,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -7052,6 +7104,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -7289,6 +7345,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -7407,6 +7467,10 @@
           "named": true
         },
         {
+          "type": "doctype",
+          "named": true
+        },
+        {
           "type": "element",
           "named": true
         },
@@ -7499,6 +7563,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -7609,6 +7677,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -7762,6 +7834,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "doctype",
           "named": true
         },
         {
@@ -9553,6 +9629,10 @@
   {
     "type": "do",
     "named": false
+  },
+  {
+    "type": "doctype",
+    "named": true
   },
   {
     "type": "else",

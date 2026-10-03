@@ -282,3 +282,50 @@ End tag for a void element
     (erroneous_end_tag)
     (text)
     (tag_name)))
+
+===
+Doctype
+===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+</html>
+---
+
+(compilation_unit
+  (doctype)
+  (element
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value
+      (attribute_value))
+    (element
+      (tag_name)
+      (element
+        (tag_name)
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value)))
+      (element
+        (tag_name)
+        (text)
+        (tag_name))
+      (tag_name))
+    (tag_name)))
+
+===
+Lowercase doctype
+===
+<!doctype html>
+<p>text</p>
+---
+
+(compilation_unit
+  (doctype)
+  (element
+    (tag_name)
+    (text)
+    (tag_name)))

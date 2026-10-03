@@ -352,3 +352,81 @@ Entities in text
     (text)
     (entity)
     (tag_name)))
+
+===
+Text between elements
+===
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p>text</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (text)
+  (element
+    (tag_name)
+    (text)
+    (tag_name)))
+
+===
+Text and entities at the start and at the end
+===
+Leading text &amp; more
+<p>text</p>
+trailing (text) here.
+---
+
+(compilation_unit
+  (text)
+  (entity)
+  (text)
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (text))
+
+===
+Text on several lines
+===
+<p>text</p>
+line one
+line two &copy; 2026
+
+line four
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (text)
+  (text)
+  (entity)
+  (text)
+  (text))
+
+===
+Comment lines between elements stay comments
+===
+<p>text</p>
+// first comment
+// second comment
+text after the comments
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (tag_name))
+  (comment)
+  (comment)
+  (text))

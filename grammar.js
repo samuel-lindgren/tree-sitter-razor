@@ -53,6 +53,7 @@ module.exports = grammar(CSHARP, {
   rules: {
     compilation_unit: ($) =>
       seq(
+        optional($._top_level_text),
         repeat(
           choice(
             $.shebang_directive, // this is to make sharing highlights easier
@@ -73,8 +74,42 @@ module.exports = grammar(CSHARP, {
             $.razor_taghelperprefix_directive,
           ),
         ),
-        repeat(choice($._node, $.razor_block)),
+        repeat(
+          choice(
+            $._node,
+            $.razor_block,
+            seq(choice($._closed_node, $.razor_block), $._top_level_text),
+          ),
+        ),
       ),
+
+    // The nodes that text may follow: every `_node` except the implicit and
+    // the explicit expression. C# can continue after an expression, and text
+    // there would compete with every token of a C# expression. Keep this
+    // list in step with `_node`.
+    _closed_node: ($) =>
+      choice(
+        $.razor_escape,
+        $.razor_if,
+        $.razor_switch,
+        $.razor_for,
+        $.razor_foreach,
+        $.razor_while,
+        $.razor_do_while,
+        $.razor_try,
+        $.explicit_line_transition,
+        $.razor_section,
+        $.razor_compound_using,
+        $.razor_lock,
+        $.element,
+        alias($._void_element, $.element),
+        $.erroneous_end_tag,
+        $.doctype,
+        $.html_comment,
+      ),
+
+    _top_level_text: ($) =>
+      repeat1(choice(alias($._text_line, $.text), $.entity)),
 
     _identifier_token: (_) =>
       token(
@@ -222,16 +257,21 @@ module.exports = grammar(CSHARP, {
         choice($.string_literal, $.identifier),
       ),
 
+    // An empty `@{ }` also reads as an implicit expression with an object
+    // initializer. The dynamic precedence makes the block win.
     razor_block: ($) =>
-      prec.left(
-        seq(
-          alias(
-            seq($._razor_marker, optional(choice("code", "functions"))),
-            "at_block",
+      prec.dynamic(
+        1,
+        prec.left(
+          seq(
+            alias(
+              seq($._razor_marker, optional(choice("code", "functions"))),
+              "at_block",
+            ),
+            "{",
+            repeat(choice($.declaration, seq($.statement), $._node)),
+            "}",
           ),
-          "{",
-          repeat(choice($.declaration, seq($.statement), $._node)),
-          "}",
         ),
       ),
 
@@ -511,6 +551,11 @@ module.exports = grammar(CSHARP, {
       ),
     _html_text: (_) => /[^<>&@.(\s]([^<>&@]*[^<>&@\s])?/,
     entity: (_) => /&(#([xX][0-9a-fA-F]{1,6}|[0-9]{1,5})|[A-Za-z]{1,30});?/,
+    // Text outside an element, one line at a time. It cannot start with `/`,
+    // so a C# comment line at the top level stays a comment. A text token
+    // with a lower lexical precedence would be simpler, but it changes which
+    // tokens take part in error recovery and makes recovery in markup worse.
+    _text_line: (_) => /[^<>&@\/\s]([^<>&@\n\r]*[^<>&@\s])?/,
 
     razor_attribute_value: ($) =>
       seq('"', optional($.modifier), $.expression, '"'),

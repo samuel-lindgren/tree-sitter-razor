@@ -430,3 +430,40 @@ text after the comments
   (comment)
   (comment)
   (text))
+
+===
+Text that starts with a period or a parenthesis
+===
+<p>Learn about <a href="x">ASP.NET Core</a>.</p>
+<p>(note) see <b>this</b>(1) &amp;. done</p>
+<p>...</p>
+---
+
+(compilation_unit
+  (element
+    (tag_name)
+    (text)
+    (element
+      (tag_name)
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value))
+      (text)
+      (tag_name))
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (text)
+    (element
+      (tag_name)
+      (text)
+      (tag_name))
+    (text)
+    (entity)
+    (text)
+    (tag_name))
+  (element
+    (tag_name)
+    (text)
+    (tag_name)))

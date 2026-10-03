@@ -551,6 +551,12 @@ module.exports = grammar(CSHARP, {
       ),
     _html_text: (_) => /[^<>&@.(\s]([^<>&@]*[^<>&@\s])?/,
     entity: (_) => /&(#([xX][0-9a-fA-F]{1,6}|[0-9]{1,5})|[A-Za-z]{1,30});?/,
+    // `_html_text` cannot start with `.` or `(`, so that `@item.Name` and
+    // `@Method()` continue after an expression. This token is the text that
+    // does start with one of them. It is only valid where no expression comes
+    // before it: at the start of an element and after a `_closed_node` or an
+    // entity, as in `</a>.` and `<p>(note)</p>`.
+    _text_after_tag: (_) => /[.(]([^<>&@]*[^<>&@\s])?/,
     // Text outside an element, one line at a time. It cannot start with `/`,
     // so a C# comment line at the top level stays a comment. A text token
     // with a lower lexical precedence would be simpler, but it changes which
@@ -593,7 +599,18 @@ module.exports = grammar(CSHARP, {
           "/>",
           seq(
             ">",
-            repeat(choice($._node, alias($._html_text, $.text), $.entity)),
+            optional(alias($._text_after_tag, $.text)),
+            repeat(
+              choice(
+                $._node,
+                alias($._html_text, $.text),
+                $.entity,
+                seq(
+                  choice($._closed_node, $.entity),
+                  alias($._text_after_tag, $.text),
+                ),
+              ),
+            ),
             $._end_tag,
           ),
         ),
